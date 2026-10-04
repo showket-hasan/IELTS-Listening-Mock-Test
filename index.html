@@ -1,0 +1,2190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IELTS Academic Computer-Delivered Listening Mock Test 01</title>
+  <style>
+    :root {
+      --primary-navy: #14284b;
+      --navy-light: #1e3a68;
+      --idp-red: #c8102e;
+      --idp-red-hover: #9e0c24;
+      --academic-cream: #fafbfc;
+      --paper-bg: #ffffff;
+      --text-dark: #222222;
+      --border-gray: #cfd8dc;
+      --accent-gold: #ffb300;
+      --answered-bg: #b0bec5;
+      --success-green: #2e7d32;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Times New Roman", Times, Georgia, serif;
+    }
+
+    body {
+      background-color: #eceff1;
+      color: var(--text-dark);
+      font-size: 15px;
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+      user-select: text;
+    }
+
+    header.cd-header {
+      background-color: var(--primary-navy);
+      color: #ffffff;
+      padding: 8px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid var(--idp-red);
+      flex-shrink: 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .idp-badge {
+      background: var(--idp-red);
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 13px;
+      padding: 3px 8px;
+      letter-spacing: 1px;
+      border-radius: 2px;
+    }
+
+    .test-title {
+      font-size: 17px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .candidate-info-box {
+      font-size: 13px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 4px 12px;
+      border-radius: 3px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .audio-and-timer-controls {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .audio-player-panel {
+      background: #1e3a68;
+      padding: 4px 12px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid #3b5998;
+    }
+
+    .audio-btn {
+      background: #ffffff;
+      color: var(--primary-navy);
+      border: none;
+      padding: 5px 12px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s;
+    }
+
+    .audio-btn:hover {
+      background: #e0e0e0;
+    }
+
+    .audio-btn.speaking {
+      background: #4caf50;
+      color: #ffffff;
+    }
+
+    .audio-status {
+      font-size: 12px;
+      color: #bbdefb;
+      min-width: 170px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .timer-display {
+      font-size: 18px;
+      font-weight: bold;
+      color: #ffea00;
+      background: #000000;
+      padding: 4px 12px;
+      border-radius: 3px;
+      border: 1px solid #555555;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 95px;
+      justify-content: center;
+    }
+
+    .timer-icon {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background-color: #ff3d00;
+      border-radius: 50%;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.3; }
+      100% { opacity: 1; }
+    }
+
+    #exam-viewport {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .paper-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 25px 45px 80px 45px;
+      background-color: var(--academic-cream);
+    }
+
+    .section-tab-header {
+      background: #ffffff;
+      border: 1px solid var(--border-gray);
+      padding: 15px 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      border-left: 6px solid var(--primary-navy);
+    }
+
+    .part-title {
+      font-size: 22px;
+      font-weight: bold;
+      color: var(--primary-navy);
+      margin-bottom: 6px;
+    }
+
+    .instructions-callout {
+      font-style: italic;
+      color: #333333;
+      margin-top: 5px;
+      font-size: 14px;
+      background: #fff8e1;
+      padding: 8px 12px;
+      border-left: 3px solid #ffb300;
+    }
+
+    .form-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      background: #ffffff;
+      border: 1px solid #b0bec5;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+
+    .form-table th, .form-table td {
+      border: 1px solid #cfd8dc;
+      padding: 10px 14px;
+      vertical-align: middle;
+      font-size: 15px;
+    }
+
+    .form-table th {
+      background-color: #e2e8f0;
+      font-weight: bold;
+      text-align: left;
+      color: var(--primary-navy);
+    }
+
+    .question-row {
+      margin-bottom: 18px;
+      padding: 12px 16px;
+      background: #ffffff;
+      border: 1px solid #dcdcdc;
+      border-radius: 3px;
+    }
+
+    .question-prompt {
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .q-number-tag {
+      display: inline-block;
+      background: var(--primary-navy);
+      color: #ffffff;
+      padding: 1px 7px;
+      font-size: 13px;
+      border-radius: 2px;
+      margin-right: 6px;
+    }
+
+    .ielts-input {
+      font-family: "Times New Roman", Times, serif;
+      font-size: 15px;
+      padding: 5px 8px;
+      border: 1px solid #78909c;
+      border-bottom: 2px solid var(--primary-navy);
+      background-color: #f7fafc;
+      color: #0d47a1;
+      font-weight: bold;
+      width: 220px;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+
+    .ielts-input:focus {
+      outline: none;
+      background-color: #ffffff;
+      border-color: var(--idp-red);
+      box-shadow: 0 0 4px rgba(200, 16, 46, 0.4);
+    }
+
+    .radio-option-label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 3px;
+      transition: background 0.15s;
+    }
+
+    .radio-option-label:hover {
+      background-color: #f0f4f8;
+    }
+
+    .radio-option-label input[type="radio"] {
+      margin-right: 10px;
+      accent-color: var(--primary-navy);
+      transform: scale(1.1);
+    }
+
+    .map-presentation-card {
+      background: #ffffff;
+      border: 1px solid #b0bec5;
+      padding: 15px;
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .map-svg-container {
+      width: 100%;
+      max-width: 650px;
+      margin: 0 auto;
+      border: 1px solid #cfd8dc;
+      background: #fafafa;
+    }
+
+    .map-matching-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+      margin-top: 15px;
+      text-align: left;
+    }
+
+    .map-match-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #ffffff;
+      border: 1px solid #b0bec5;
+      padding: 8px 12px;
+      border-radius: 2px;
+    }
+
+    select.map-select {
+      font-family: "Times New Roman", Times, serif;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 4px 10px;
+      border: 1px solid #78909c;
+      border-radius: 2px;
+      background: #ffffff;
+      color: var(--primary-navy);
+      cursor: pointer;
+    }
+
+    .notes-card {
+      background: #ffffff;
+      border: 1px solid #cfd8dc;
+      padding: 20px 25px;
+      line-height: 2.2;
+      font-size: 16px;
+    }
+
+    .notes-card ul {
+      list-style-type: square;
+      margin-left: 25px;
+      margin-bottom: 12px;
+    }
+
+    footer.cd-footer {
+      background-color: #ffffff;
+      border-top: 2px solid #b0bec5;
+      padding: 6px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      box-shadow: 0 -2px 6px rgba(0,0,0,0.06);
+    }
+
+    .section-selector {
+      display: flex;
+      gap: 6px;
+    }
+
+    .part-nav-btn {
+      font-family: "Times New Roman", Times, serif;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: bold;
+      border: 1px solid #90a4ae;
+      background: #eceff1;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+
+    .part-nav-btn.active {
+      background: var(--primary-navy);
+      color: #ffffff;
+      border-color: var(--primary-navy);
+    }
+
+    .question-palette {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      max-width: 680px;
+      justify-content: center;
+    }
+
+    .palette-btn {
+      width: 25px;
+      height: 25px;
+      border: 1px solid #90a4ae;
+      background: #ffffff;
+      font-size: 11px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 2px;
+      transition: all 0.15s;
+    }
+
+    .palette-btn.answered {
+      background: #b0bec5;
+      color: #111111;
+      border-color: #78909c;
+    }
+
+    .palette-btn.flagged {
+      border: 2px solid #ff6f00 !important;
+      position: relative;
+    }
+
+    .palette-btn.flagged::after {
+      content: "";
+      position: absolute;
+      top: 1px;
+      right: 1px;
+      width: 5px;
+      height: 5px;
+      background: #ff6f00;
+      border-radius: 50%;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .transcript-toggle-btn {
+      background: #ffffff;
+      border: 1px solid #1e3a68;
+      color: #1e3a68;
+      padding: 6px 10px;
+      font-weight: bold;
+      font-size: 12px;
+      cursor: pointer;
+      border-radius: 2px;
+    }
+
+    .flag-toggle-btn {
+      background: #ffffff;
+      border: 1px solid #ff8f00;
+      color: #e65100;
+      padding: 6px 10px;
+      font-weight: bold;
+      font-size: 12px;
+      cursor: pointer;
+      border-radius: 2px;
+    }
+
+    .submit-test-btn {
+      background: var(--idp-red);
+      color: #ffffff;
+      border: none;
+      padding: 7px 16px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 2px;
+      letter-spacing: 0.5px;
+      transition: background 0.2s;
+    }
+
+    .submit-test-btn:hover {
+      background: #9b0018;
+    }
+
+    #report-screen {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #f4f6f8;
+      z-index: 9999;
+      overflow-y: auto;
+      padding: 30px;
+    }
+
+    .report-dossier {
+      max-width: 1100px;
+      margin: 0 auto 50px auto;
+      background: #ffffff;
+      border: 1px solid #b0bec5;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      padding: 40px;
+      border-top: 8px solid var(--primary-navy);
+    }
+
+    .dossier-header {
+      border-bottom: 2px solid var(--primary-navy);
+      padding-bottom: 15px;
+      margin-bottom: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .dossier-header h1 {
+      font-size: 26px;
+      color: var(--primary-navy);
+      margin-bottom: 4px;
+    }
+
+    .dossier-header p {
+      font-size: 13px;
+      color: #555555;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .stat-card {
+      background: #fafafa;
+      border: 1px solid #cfd8dc;
+      padding: 15px;
+      text-align: center;
+      border-radius: 2px;
+    }
+
+    .stat-card .val {
+      font-size: 32px;
+      font-weight: bold;
+      color: var(--primary-navy);
+    }
+
+    .stat-card .lbl {
+      font-size: 12px;
+      text-transform: uppercase;
+      color: #555555;
+      letter-spacing: 0.5px;
+    }
+
+    .band-callout {
+      background: #e8f5e9;
+      border: 1px solid #81c784;
+      padding: 15px 20px;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .band-pill {
+      background: #2e7d32;
+      color: #ffffff;
+      font-size: 28px;
+      font-weight: bold;
+      padding: 6px 18px;
+      border-radius: 3px;
+      min-width: 140px;
+      text-align: center;
+    }
+
+    .export-cta-bar {
+      background: #e3f2fd;
+      border: 1px solid #90caf9;
+      padding: 15px 20px;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .download-word-btn {
+      background: #1565c0;
+      color: #ffffff;
+      border: none;
+      padding: 10px 22px;
+      font-size: 15px;
+      font-weight: bold;
+      border-radius: 2px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+
+    .download-word-btn:hover {
+      background: #0d47a1;
+    }
+
+    .review-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      font-size: 13px;
+    }
+
+    .review-table th, .review-table td {
+      border: 1px solid #cfd8dc;
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    .review-table th {
+      background-color: #263238;
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    .res-correct {
+      background-color: #e8f5e9;
+      color: #1b5e20;
+      font-weight: bold;
+    }
+
+    .res-incorrect {
+      background-color: #ffebee;
+      color: #b71c1c;
+      font-weight: bold;
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      padding: 25px 30px;
+      max-width: 480px;
+      border-radius: 3px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      text-align: center;
+      border-top: 5px solid var(--idp-red);
+    }
+
+    .transcript-drawer {
+      display: none;
+      position: fixed;
+      bottom: 50px;
+      right: 20px;
+      width: 450px;
+      max-height: 480px;
+      background: #ffffff;
+      border: 2px solid var(--primary-navy);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      z-index: 999;
+      flex-direction: column;
+      border-radius: 4px;
+    }
+
+    .transcript-header {
+      background: var(--primary-navy);
+      color: #ffffff;
+      padding: 8px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    .transcript-body {
+      padding: 12px;
+      overflow-y: auto;
+      font-size: 13px;
+      line-height: 1.6;
+      background: #fdfdfd;
+      max-height: 430px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="cd-header">
+    <div class="brand-section">
+      <span class="idp-badge">IDP SIMULATION</span>
+      <span class="test-title">IELTS Academic on Computer — Listening Mock Test 01</span>
+    </div>
+
+    <div class="candidate-info-box">
+      <strong>Candidate:</strong> Dr. R. Harrison | <strong>ID:</strong> TH-982104-CD
+    </div>
+
+    <div class="audio-and-timer-controls">
+      <!-- Integrated Verbatim Speech Audio Console -->
+      <div class="audio-player-panel">
+        <button id="audio-toggle-btn" class="audio-btn" onclick="toggleAudioPlayback()">
+          <span id="audio-play-icon">▶ Play Exam Audio</span>
+        </button>
+        <div class="audio-status" id="audio-status-label">Audio: Standby (Click Play)</div>
+      </div>
+
+      <!-- Pacing Countdown Timer (34 minutes total: 32 min audio + 2 min review) -->
+      <div class="timer-display" title="Time remaining until automated final submission">
+        <span class="timer-icon"></span>
+        <span id="countdown-clock">34:00</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="exam-viewport">
+    <div class="paper-container" id="paper-scroll-area">
+
+      <!-- PART 1 (Questions 1-10) -->
+      <section id="part-container-1" class="exam-part">
+        <div class="section-tab-header">
+          <div class="part-title">PART 1 (Questions 1–10)</div>
+          <p>Listen to the conversation and complete the notes below.</p>
+          <div class="instructions-callout">
+            Write <strong>ONE WORD AND/OR A NUMBER</strong> for each answer.
+          </div>
+        </div>
+
+        <table class="form-table">
+          <thead>
+            <tr>
+              <th colspan="2">International Academic Scholars Lodge — Accommodation Booking Form</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="width: 35%;"><strong>Guest Full Name:</strong></td>
+              <td>Dr. Richard Harrison</td>
+            </tr>
+            <tr>
+              <td><strong>Department / Faculty:</strong></td>
+              <td>Department of Educational Technology</td>
+            </tr>
+            <tr>
+              <td><strong>1. Primary Contact Telephone:</strong></td>
+              <td>
+                <span class="q-number-tag">Q1</span>
+                <input type="text" id="q1" class="ielts-input" placeholder="e.g. 078..." oninput="handleInputAnswer(1, this.value)">
+              </td>
+            </tr>
+            <tr>
+              <td><strong>2. Arrival Date:</strong></td>
+              <td>
+                <span class="q-number-tag">Q2</span>
+                <input type="text" id="q2" class="ielts-input" placeholder="e.g. 14th" oninput="handleInputAnswer(2, this.value)"> October
+              </td>
+            </tr>
+            <tr>
+              <td><strong>3. Planned Duration of Residence:</strong></td>
+              <td>
+                <span class="q-number-tag">Q3</span>
+                <input type="text" id="q3" class="ielts-input" placeholder="number" oninput="handleInputAnswer(3, this.value)"> weeks
+              </td>
+            </tr>
+            <tr>
+              <td><strong>4. Selected Accommodation Category:</strong></td>
+              <td>
+                <span class="q-number-tag">Q4</span>
+                <input type="text" id="q4" class="ielts-input" placeholder="category" oninput="handleInputAnswer(4, this.value)"> Suite
+              </td>
+            </tr>
+            <tr>
+              <td><strong>5. Essential Room Requirement:</strong></td>
+              <td>
+                Must have access to a private 
+                <span class="q-number-tag">Q5</span>
+                <input type="text" id="q5" class="ielts-input" placeholder="room requirement" oninput="handleInputAnswer(5, this.value)">
+              </td>
+            </tr>
+            <tr>
+              <td><strong>6. Initial Security Deposit Payment Method:</strong></td>
+              <td>
+                Via 
+                <span class="q-number-tag">Q6</span>
+                <input type="text" id="q6" class="ielts-input" placeholder="payment type" oninput="handleInputAnswer(6, this.value)"> transfer
+              </td>
+            </tr>
+            <tr>
+              <td><strong>7. Vehicle Authorization Required:</strong></td>
+              <td>
+                <span class="q-number-tag">Q7</span>
+                <input type="text" id="q7" class="ielts-input" placeholder="permit type" oninput="handleInputAnswer(7, this.value)"> parking permit
+              </td>
+            </tr>
+            <tr>
+              <td><strong>8. Dietary Specification for Breakfast:</strong></td>
+              <td>
+                Strictly 
+                <span class="q-number-tag">Q8</span>
+                <input type="text" id="q8" class="ielts-input" placeholder="dietary requirement" oninput="handleInputAnswer(8, this.value)"> items only
+              </td>
+            </tr>
+            <tr>
+              <td><strong>9. Physical Check-in & Key Collection:</strong></td>
+              <td>
+                Located at the West 
+                <span class="q-number-tag">Q9</span>
+                <input type="text" id="q9" class="ielts-input" placeholder="location" oninput="handleInputAnswer(9, this.value)">
+              </td>
+            </tr>
+            <tr>
+              <td><strong>10. High-Speed Campus Network SSID:</strong></td>
+              <td>
+                Connect to '
+                <span class="q-number-tag">Q10</span>
+                <input type="text" id="q10" class="ielts-input" placeholder="network name" oninput="handleInputAnswer(10, this.value)">-Scholar'
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- PART 2 (Questions 11-20) -->
+      <section id="part-container-2" class="exam-part" style="display: none;">
+        <div class="section-tab-header">
+          <div class="part-title">PART 2 (Questions 11–20)</div>
+          <p>You will hear an orientation tour of a university science and innovation hub.</p>
+          <div class="instructions-callout">
+            Questions 11–15: Choose the correct letter, <strong>A, B, or C</strong>.
+          </div>
+        </div>
+
+        <div class="question-row">
+          <div class="question-prompt"><span class="q-number-tag">11</span> The Science Discovery Centre was originally constructed as:</div>
+          <label class="radio-option-label"><input type="radio" name="q11" value="A" onchange="handleRadioAnswer(11, 'A')"> A. a municipal water purification plant.</label>
+          <label class="radio-option-label"><input type="radio" name="q11" value="B" onchange="handleRadioAnswer(11, 'B')"> B. a locomotive repair depot.</label>
+          <label class="radio-option-label"><input type="radio" name="q11" value="C" onchange="handleRadioAnswer(11, 'C')"> C. an agricultural seed storage warehouse.</label>
+        </div>
+
+        <div class="question-row">
+          <div class="question-prompt"><span class="q-number-tag">12</span> The secondary school STEM outreach initiative primarily seeks to:</div>
+          <label class="radio-option-label"><input type="radio" name="q12" value="A" onchange="handleRadioAnswer(12, 'A')"> A. train students in competitive programming championships.</label>
+          <label class="radio-option-label"><input type="radio" name="q12" value="B" onchange="handleRadioAnswer(12, 'B')"> B. mentor learners through empirical scientific inquiry projects.</label>
+          <label class="radio-option-label"><input type="radio" name="q12" value="C" onchange="handleRadioAnswer(12, 'C')"> C. prepare high school teachers for certification examinations.</label>
+        </div>
+
+        <div class="question-row">
+          <div class="question-prompt"><span class="q-number-tag">13</span> How must researchers reserve specialized laboratory apparatus?</div>
+          <label class="radio-option-label"><input type="radio" name="q13" value="A" onchange="handleRadioAnswer(13, 'A')"> A. By submitting an electronic portal request 48 hours in advance.</label>
+          <label class="radio-option-label"><input type="radio" name="q13" value="B" onchange="handleRadioAnswer(13, 'B')"> B. By signing a manual requisition logbook with the laboratory technician.</label>
+          <label class="radio-option-label"><input type="radio" name="q13" value="C" onchange="handleRadioAnswer(13, 'C')"> C. By obtaining written endorsement from their department chair.</label>
+        </div>
+
+        <div class="question-row">
+          <div class="question-prompt"><span class="q-number-tag">14</span> The focal theme of this semester’s public interactive exhibition is:</div>
+          <label class="radio-option-label"><input type="radio" name="q14" value="A" onchange="handleRadioAnswer(14, 'A')"> A. Renewable energy innovations in tropical agriculture.</label>
+          <label class="radio-option-label"><input type="radio" name="q14" value="B" onchange="handleRadioAnswer(14, 'B')"> B. Multimodal artificial intelligence in medical diagnostics.</label>
+          <label class="radio-option-label"><input type="radio" name="q14" value="C" onchange="handleRadioAnswer(14, 'C')"> C. Clean ocean robotics and microplastic extraction.</label>
+        </div>
+
+        <div class="question-row">
+          <div class="question-prompt"><span class="q-number-tag">15</span> To access the prototyping facility outside regular working hours, scholars must:</div>
+          <label class="radio-option-label"><input type="radio" name="q15" value="A" onchange="handleRadioAnswer(15, 'A')"> A. present an authorized biometric security smartcard.</label>
+          <label class="radio-option-label"><input type="radio" name="q15" value="B" onchange="handleRadioAnswer(15, 'B')"> B. be accompanied by an accredited campus safety officer.</label>
+          <label class="radio-option-label"><input type="radio" name="q15" value="C" onchange="handleRadioAnswer(15, 'C')"> C. notify building security via email before 17:00.</label>
+        </div>
+
+        <div class="section-tab-header" style="margin-top: 30px;">
+          <div class="part-title" style="font-size: 18px;">Questions 16–20: Map Labeling</div>
+          <div class="instructions-callout">
+            Label the map below. Choose the correct letter, <strong>A–G</strong>, next to Questions 16–20.
+          </div>
+        </div>
+
+        <div class="map-presentation-card">
+          <h4 style="margin-bottom: 10px; color: var(--primary-navy);">Science Innovation Hub — Main Ground Floor Layout</h4>
+          
+          <div class="map-svg-container">
+            <svg viewBox="0 0 650 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+              <!-- Compass Rose -->
+              <g transform="translate(580, 60)">
+                <circle cx="0" cy="0" r="22" fill="#ffffff" stroke="#333333" stroke-width="1.5"/>
+                <polygon points="0,-18 5,-4 0,-7 -5,-4" fill="#c8102e"/>
+                <polygon points="0,18 5,4 0,7 -5,4" fill="#333333"/>
+                <polygon points="18,0 4,5 7,0 4,-5" fill="#333333"/>
+                <polygon points="-18,0 -4,5 -7,0 -4,-5" fill="#333333"/>
+                <text x="-4" y="-22" font-size="12" font-weight="bold" fill="#c8102e">N</text>
+                <text x="-3" y="32" font-size="11" fill="#333333">S</text>
+                <text x="24" y="4" font-size="11" fill="#333333">E</text>
+                <text x="-34" y="4" font-size="11" fill="#333333">W</text>
+              </g>
+
+              <!-- Outer Hub Boundary Wall -->
+              <rect x="50" y="20" width="550" height="430" fill="#fdfdfd" stroke="#14284b" stroke-width="3" rx="4"/>
+              
+              <!-- Room G: North End Plenary -->
+              <rect x="175" y="30" width="300" height="70" fill="#e8eaf6" stroke="#283593" stroke-width="2"/>
+              <text x="325" y="70" text-anchor="middle" font-weight="bold" font-size="20" fill="#1a237e">G</text>
+
+              <!-- Central Open Courtyard -->
+              <rect x="220" y="130" width="210" height="170" fill="#e0f2f1" stroke="#00695c" stroke-width="2" stroke-dasharray="4,4"/>
+              <text x="325" y="215" text-anchor="middle" font-size="15" font-style="italic" fill="#004d40">Central Open Courtyard</text>
+
+              <!-- West Flank: Room C & Room D -->
+              <rect x="70" y="130" width="130" height="75" fill="#ede7f6" stroke="#4527a0" stroke-width="2"/>
+              <text x="135" y="172" text-anchor="middle" font-weight="bold" font-size="20" fill="#311b92">C</text>
+
+              <rect x="70" y="225" width="130" height="75" fill="#ede7f6" stroke="#4527a0" stroke-width="2"/>
+              <text x="135" y="267" text-anchor="middle" font-weight="bold" font-size="20" fill="#311b92">D</text>
+
+              <!-- East Flank: Room E & Room F -->
+              <rect x="450" y="130" width="130" height="75" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+              <text x="515" y="172" text-anchor="middle" font-weight="bold" font-size="20" fill="#bf360c">E</text>
+
+              <rect x="450" y="225" width="130" height="75" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+              <text x="515" y="267" text-anchor="middle" font-weight="bold" font-size="20" fill="#bf360c">F</text>
+
+              <!-- Connecting Corridors -->
+              <line x1="325" y1="100" x2="325" y2="130" stroke="#78909c" stroke-width="6"/>
+              <line x1="325" y1="300" x2="325" y2="330" stroke="#78909c" stroke-width="8"/>
+              <text x="325" y="320" text-anchor="middle" font-size="11" fill="#455a64">Central Corridor</text>
+
+              <!-- Central Foyer -->
+              <rect x="230" y="330" width="190" height="90" fill="#eceff1" stroke="#37474f" stroke-width="2"/>
+              <text x="325" y="380" text-anchor="middle" font-weight="bold" font-size="14" fill="#263238">Central Foyer</text>
+
+              <!-- South-West & South-East Rooms: Room A & Room B -->
+              <rect x="70" y="330" width="140" height="90" fill="#e1f5fe" stroke="#0277bd" stroke-width="2"/>
+              <text x="140" y="382" text-anchor="middle" font-weight="bold" font-size="20" fill="#01579b">A</text>
+
+              <rect x="440" y="330" width="140" height="90" fill="#e1f5fe" stroke="#0277bd" stroke-width="2"/>
+              <text x="510" y="382" text-anchor="middle" font-weight="bold" font-size="20" fill="#01579b">B</text>
+
+              <!-- Main South Entrance -->
+              <polygon points="325,450 315,435 335,435" fill="#c8102e"/>
+              <line x1="280" y1="420" x2="370" y2="420" stroke="#c8102e" stroke-width="4"/>
+              <text x="325" y="445" text-anchor="middle" font-weight="bold" font-size="12" fill="#c8102e">MAIN SOUTH ENTRANCE</text>
+            </svg>
+          </div>
+
+          <div class="map-matching-grid">
+            <div class="map-match-item">
+              <span><span class="q-number-tag">16</span> Robotics & Automation Workshop:</span>
+              <select class="map-select" id="q16" onchange="handleSelectAnswer(16, this.value)">
+                <option value="">Select (A-G)</option>
+                <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                <option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option>
+              </select>
+            </div>
+
+            <div class="map-match-item">
+              <span><span class="q-number-tag">17</span> Multimodal Learning Analytics Lab:</span>
+              <select class="map-select" id="q17" onchange="handleSelectAnswer(17, this.value)">
+                <option value="">Select (A-G)</option>
+                <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                <option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option>
+              </select>
+            </div>
+
+            <div class="map-match-item">
+              <span><span class="q-number-tag">18</span> Rapid 3D Prototyping Bay:</span>
+              <select class="map-select" id="q18" onchange="handleSelectAnswer(18, this.value)">
+                <option value="">Select (A-G)</option>
+                <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                <option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option>
+              </select>
+            </div>
+
+            <div class="map-match-item">
+              <span><span class="q-number-tag">19</span> STEM Teacher Resource Archives:</span>
+              <select class="map-select" id="q19" onchange="handleSelectAnswer(19, this.value)">
+                <option value="">Select (A-G)</option>
+                <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                <option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option>
+              </select>
+            </div>
+
+            <div class="map-match-item">
+              <span><span class="q-number-tag">20</span> Central Lecture & Demonstration Theatre:</span>
+              <select class="map-select" id="q20" onchange="handleSelectAnswer(20, this.value)">
+                <option value="">Select (A-G)</option>
+                <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                <option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PART 3 (Questions 21-30) -->
+      <section id="part-container-3" class="exam-part" style="display: none;">
+        <div class="section-tab-header">
+          <div class="part-title">PART 3 (Questions 21–30)</div>
+          <p>You will hear a doctoral research consultation discussing inquiry methodology.</p>
+          <div class="instructions-callout">
+            Questions 21–25: Which researcher expresses the following views? Write the correct letter, <strong>A, B, or C</strong>.<br>
+            <strong>A: Liam &nbsp;|&nbsp; B: Maya &nbsp;|&nbsp; C: Professor Jenkins</strong>
+          </div>
+        </div>
+
+        <div class="question-row">
+          <div class="question-prompt"><span class="q-number-tag">21</span> The statistical sample size in the preliminary pilot was insufficient to establish statistical power.</div>
+          <label class="radio-option-label"><input type="radio" name="q21" value="A" onchange="handleRadioAnswer(21, 'A')"> A. Liam</label>
+          <label class="radio-option-label"><input type="radio" name="q21" value="B" onchange="handleRadioAnswer(21, 'B')"> B. Maya</label>
+          <label class="radio-option-label"><input type="radio" name="q21" value="C" onchange="handleRadioAnswer(21, 'C')"> C. Professor Jenkins</label>
+        </div>
+
+        <div class="question-row">
+          <div class="question-prompt"><span class="q-number-tag">22</span> Video recording apparatus may induce behavioral reactivity among secondary science learners.</div>
+          <label class="radio-option-label"><input type="radio" name="q22" value="A" onchange="handleRadioAnswer(22, 'A')"> A. Liam</label>
+          <label class="radio-option-label"><input type="radio" name="q22" value="B" onchange="handleRadioAnswer(22, 'B')"> B. Maya</label>
+          <label class="radio-option-label"><input type="radio" name="q22" value="C" onchange="handleRadioAnswer(22, 'C')"> C. Professor Jenkins</label>
+        </div>
+
+        <div class="question-row">
+          <div class="question-prompt"><span class="q-number-tag">23</span> Instructional 5E inquiry lesson phases must adhere strictly to identical time allocations across groups.</div>
+          <label class="radio-option-label"><input type="radio" name="q23" value="A" onchange="handleRadioAnswer(23, 'A')"> A. Liam</label>
+          <label class="radio-option-label"><input type="radio" name="q23" value="B" onchange="handleRadioAnswer(23, 'B')"> B. Maya</label>
+          <label class="radio-option-label"><input type="radio" name="q23" value="C" onchange="handleRadioAnswer(23, 'C')"> C. Professor Jenkins</label>
+        </div>
+
+        <div class="question-row">
+          <div class="question-prompt"><span class="q-number-tag">24</span> Automated audio transcription algorithms require systematic manual validation for technical vocabulary.</div>
+          <label class="radio-option-label"><input type="radio" name="q24" value="A" onchange="handleRadioAnswer(24, 'A')"> A. Liam</label>
+          <label class="radio-option-label"><input type="radio" name="q24" value="B" onchange="handleRadioAnswer(24, 'B')"> B. Maya</label>
+          <label class="radio-option-label"><input type="radio" name="q24" value="C" onchange="handleRadioAnswer(24, 'C')"> C. Professor Jenkins</label>
+        </div>
+
+        <div class="question-row">
+          <div class="question-prompt"><span class="q-number-tag">25</span> Evaluative instruments should prioritize conceptual transfer across domains over declarative factual recall.</div>
+          <label class="radio-option-label"><input type="radio" name="q25" value="A" onchange="handleRadioAnswer(25, 'A')"> A. Liam</label>
+          <label class="radio-option-label"><input type="radio" name="q25" value="B" onchange="handleRadioAnswer(25, 'B')"> B. Maya</label>
+          <label class="radio-option-label"><input type="radio" name="q25" value="C" onchange="handleRadioAnswer(25, 'C')"> C. Professor Jenkins</label>
+        </div>
+
+        <div class="section-tab-header" style="margin-top: 30px;">
+          <div class="part-title" style="font-size: 18px;">Questions 26–30: Choose the correct letter, A, B, or C.</div>
+        </div>
+
+        <div class="question-row">
+          <div class="question-prompt"><span class="q-number-tag">26</span> Why did the graduate team select secondary school students for their inquiry study?</div>
+          <label class="radio-option-label"><input type="radio" name="q26" value="A" onchange="handleRadioAnswer(26, 'A')"> A. Prior literature shows cognitive misconceptions solidify during early secondary years.</label>
+          <label class="radio-option-label"><input type="radio" name="q26" value="B" onchange="handleRadioAnswer(26, 'B')"> B. Standardized test scores in the target district have demonstrated a sharp decline.</label>
+          <label class="radio-option-label"><input type="radio" name="q26" value="C" onchange="handleRadioAnswer(26, 'C')"> C. The partner secondary school offered dedicated access to modern science laboratories.</label>
+        </div>
+
+        <div class="question-row">
+          <div class="question-prompt"><span class="q-number-tag">27</span> What procedural hurdle arose regarding the research ethics protocol?</div>
+          <label class="radio-option-label"><input type="radio" name="q27" value="A" onchange="handleRadioAnswer(27, 'A')"> A. Institutional review board fees exceeded the project's allocated operating budget.</label>
+          <label class="radio-option-label"><input type="radio" name="q27" value="B" onchange="handleRadioAnswer(27, 'B')"> B. Obtaining dual parental and student assent required multilingual documentation.</label>
+          <label class="radio-option-label"><input type="radio" name="q27" value="C" onchange="handleRadioAnswer(27, 'C')"> C. The university ethics committee objected to storing biometric facial analytics.</label>
+        </div>
+
+        <div class="question-row">
+          <div class="question-prompt"><span class="q-number-tag">28</span> To minimize researcher observation bias during laboratory sessions, the team decided to:</div>
+          <label class="radio-option-label"><input type="radio" name="q28" value="A" onchange="handleRadioAnswer(28, 'A')"> A. rotate video cameras on automated robotic gimbals.</label>
+          <label class="radio-option-label"><input type="radio" name="q28" value="B" onchange="handleRadioAnswer(28, 'B')"> B. utilize double-blind coding rubrics for observational transcripts.</label>
+          <label class="radio-option-label"><input type="radio" name="q28" value="C" onchange="handleRadioAnswer(28, 'C')"> C. conduct observations exclusively behind one-way acoustic mirrors.</label>
+        </div>
+
+        <div class="question-row">
+          <div class="question-prompt"><span class="q-number-tag">29</span> What adjustment did Professor Jenkins recommend regarding the qualitative coding schedule?</div>
+          <label class="radio-option-label"><input type="radio" name="q29" value="A" onchange="handleRadioAnswer(29, 'A')"> A. Postpone coding until all longitudinal post-tests have been completely collected.</label>
+          <label class="radio-option-label"><input type="radio" name="q29" value="B" onchange="handleRadioAnswer(29, 'B')"> B. Execute parallel inter-rater reliability calibration checks every two weeks.</label>
+          <label class="radio-option-label"><input type="radio" name="q29" value="C" onchange="handleRadioAnswer(29, 'C')"> C. Limit qualitative analysis exclusively to students scoring in the upper quartile.</label>
+        </div>
+
+        <div class="question-row">
+          <div class="question-prompt"><span class="q-number-tag">30</span> What immediate action did the researchers agree to execute before Friday?</div>
+          <label class="radio-option-label"><input type="radio" name="q30" value="A" onchange="handleRadioAnswer(30, 'A')"> A. Revise the diagnostic pre-test rubric to incorporate CER argumentation models.</label>
+          <label class="radio-option-label"><input type="radio" name="q30" value="B" onchange="handleRadioAnswer(30, 'B')"> B. Purchase additional directional lavalier microphones for small-group tables.</label>
+          <label class="radio-option-label"><input type="radio" name="q30" value="C" onchange="handleRadioAnswer(30, 'C')"> C. Finalize the formal participant recruitment brief for the school board.</label>
+        </div>
+      </section>
+
+      <!-- PART 4 (Questions 31-40) -->
+      <section id="part-container-4" class="exam-part" style="display: none;">
+        <div class="section-tab-header">
+          <div class="part-title">PART 4 (Questions 31–40)</div>
+          <p>You will hear an academic lecture on Cognitive Load Theory and instructional design.</p>
+          <div class="instructions-callout">
+            Complete the lecture notes below. Write <strong>ONE WORD ONLY</strong> for each answer.
+          </div>
+        </div>
+
+        <div class="notes-card">
+          <h3 style="color: var(--primary-navy); margin-bottom: 12px; border-bottom: 2px solid #cfd8dc; padding-bottom: 4px;">
+            Cognitive Load Theory and Multimodal Instructional Design in STEM
+          </h3>
+
+          <h4 style="color: #2c3e50; margin-top: 15px;">Architecture of Human Cognitive Processing:</h4>
+          <ul>
+            <li>
+              Working memory operates under a strictly constrained processing 
+              <span class="q-number-tag">Q31</span>
+              <input type="text" id="q31" class="ielts-input" style="width: 170px;" oninput="handleInputAnswer(31, this.value)">.
+            </li>
+            <li>
+              Long-term memory serves as an expansive repository of cognitive structures termed 
+              <span class="q-number-tag">Q32</span>
+              <input type="text" id="q32" class="ielts-input" style="width: 170px;" oninput="handleInputAnswer(32, this.value)">.
+            </li>
+          </ul>
+
+          <h4 style="color: #2c3e50; margin-top: 15px;">Tripartite Taxonomy of Cognitive Load:</h4>
+          <ul>
+            <li>
+              <strong>Intrinsic Load:</strong> Dictated by the innate intellectual 
+              <span class="q-number-tag">Q33</span>
+              <input type="text" id="q33" class="ielts-input" style="width: 170px;" oninput="handleInputAnswer(33, this.value)"> and element interactivity of the material.
+            </li>
+            <li>
+              <strong>Extraneous Load:</strong> Caused by suboptimal instructional 
+              <span class="q-number-tag">Q34</span>
+              <input type="text" id="q34" class="ielts-input" style="width: 170px;" oninput="handleInputAnswer(34, this.value)"> or poor pedagogical delivery.
+            </li>
+            <li>
+              <strong>Germane Load:</strong> Represents the constructive mental 
+              <span class="q-number-tag">Q35</span>
+              <input type="text" id="q35" class="ielts-input" style="width: 170px;" oninput="handleInputAnswer(35, this.value)"> allocated to schema acquisition and automation.
+            </li>
+          </ul>
+
+          <h4 style="color: #2c3e50; margin-top: 15px;">Empirical Phenomena in Multimodal Science Learning:</h4>
+          <ul>
+            <li>
+              <strong>Split-Attention Effect:</strong> Occurs when text and accompanying scientific diagrams are separated in space or 
+              <span class="q-number-tag">Q36</span>
+              <input type="text" id="q36" class="ielts-input" style="width: 170px;" oninput="handleInputAnswer(36, this.value)">.
+            </li>
+            <li>
+              <strong>Redundancy Effect:</strong> Duplicating spoken narration with identical on-screen text creates cognitive 
+              <span class="q-number-tag">Q37</span>
+              <input type="text" id="q37" class="ielts-input" style="width: 170px;" oninput="handleInputAnswer(37, this.value)">.
+            </li>
+            <li>
+              <strong>Transient Information Hazard:</strong> Dynamic animations overwhelm working memory if learners lack personal 
+              <span class="q-number-tag">Q38</span>
+              <input type="text" id="q38" class="ielts-input" style="width: 170px;" oninput="handleInputAnswer(38, this.value)"> over playback speed.
+            </li>
+          </ul>
+
+          <h4 style="color: #2c3e50; margin-top: 15px;">Evidence-Based Pedagogical Interventions:</h4>
+          <ul>
+            <li>
+              Introducing structured worked examples prior to problem-solving serves as vital cognitive 
+              <span class="q-number-tag">Q39</span>
+              <input type="text" id="q39" class="ielts-input" style="width: 170px;" oninput="handleInputAnswer(39, this.value)">.
+            </li>
+            <li>
+              Integrating regular low-stakes retrieval quizzes substantially enhances long-term conceptual 
+              <span class="q-number-tag">Q40</span>
+              <input type="text" id="q40" class="ielts-input" style="width: 170px;" oninput="handleInputAnswer(40, this.value)">.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="cd-footer">
+    <div class="section-selector">
+      <button class="part-nav-btn active" id="btn-part-1" onclick="switchPart(1)">Part 1 (1–10)</button>
+      <button class="part-nav-btn" id="btn-part-2" onclick="switchPart(2)">Part 2 (11–20)</button>
+      <button class="part-nav-btn" id="btn-part-3" onclick="switchPart(3)">Part 3 (21–30)</button>
+      <button class="part-nav-btn" id="btn-part-4" onclick="switchPart(4)">Part 4 (31–40)</button>
+    </div>
+
+    <!-- 40-Question Interactive Palette -->
+    <div class="question-palette" id="question-palette">
+      <!-- Generated via JavaScript 1 to 40 -->
+    </div>
+
+    <div class="action-buttons">
+      <button class="transcript-toggle-btn" onclick="toggleTranscriptModal()">
+        📜 Audio Script
+      </button>
+      <button class="flag-toggle-btn" id="flag-btn" onclick="toggleCurrentFlag()">
+        ⚐ Flag
+      </button>
+      <button class="submit-test-btn" onclick="confirmSubmitTest()">
+        Submit Exam
+      </button>
+    </div>
+  </footer>
+
+  <div class="transcript-drawer" id="transcript-drawer">
+    <div class="transcript-header">
+      <span>Official Verbatim Audio Script</span>
+      <button onclick="toggleTranscriptModal()" style="background:none; border:none; color:#fff; font-size:16px; cursor:pointer;">✕</button>
+    </div>
+    <div class="transcript-body" id="transcript-body-content">
+      <!-- Populated dynamically -->
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="confirm-modal">
+    <div class="modal-box">
+      <h3 style="color: var(--primary-navy); margin-bottom: 12px; font-size: 20px;">Confirm Exam Submission</h3>
+      <p id="confirm-modal-text" style="font-size: 15px; margin-bottom: 20px; color: #444;">
+        Are you ready to submit your IELTS Listening examination for automatic standardized grading?
+      </p>
+      <div style="display: flex; gap: 15px; justify-content: center;">
+        <button class="part-nav-btn" style="background:#e0e0e0;" onclick="closeModal()">Review Answers</button>
+        <button class="submit-test-btn" onclick="finalizeSubmission()">Yes, Finalize & Score</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="report-screen">
+    <div class="report-dossier">
+      <div class="dossier-header">
+        <div>
+          <h1>IELTS Academic Listening — Examination Dossier</h1>
+          <p>Standardized Diagnostic Output &bull; IDP Education Computer-Delivered Framework</p>
+        </div>
+        <div style="text-align: right;">
+          <div style="font-size: 14px; font-weight: bold;">Candidate: Dr. Richard Harrison</div>
+          <div style="font-size: 12px; color: #666;" id="report-timestamp">Date: 2026-10-04</div>
+        </div>
+      </div>
+
+      <!-- Key Performance Indicators -->
+      <div class="summary-grid">
+        <div class="stat-card">
+          <div class="val" id="report-raw-score">--/40</div>
+          <div class="lbl">Raw Score</div>
+        </div>
+        <div class="stat-card">
+          <div class="val" id="report-band-score" style="color: var(--idp-red);">Band --</div>
+          <div class="lbl">IELTS Band Score</div>
+        </div>
+        <div class="stat-card">
+          <div class="val" id="report-percentage">--%</div>
+          <div class="lbl">Accuracy Rate</div>
+        </div>
+        <div class="stat-card">
+          <div class="val" id="report-cefr-level">--</div>
+          <div class="lbl">CEFR Standard</div>
+        </div>
+      </div>
+
+      <!-- Band Callout & Descriptor -->
+      <div class="band-callout">
+        <div class="band-pill" id="report-badge-band">Band --</div>
+        <div>
+          <h3 id="report-competency-title" style="color: #1b5e20; margin-bottom: 3px;">Competency Profile</h3>
+          <p id="report-competency-desc" style="font-size: 14px; color: #2e7d32;">
+            Detailed proficiency summary will populate based on authentic IDP band conversion tables.
+          </p>
+        </div>
+      </div>
+
+      <!-- Action: Download Word Dossier (.doc) -->
+      <div class="export-cta-bar">
+        <div>
+          <strong style="color: #0d47a1; font-size: 15px;">Export Formal Diagnostic Record:</strong>
+          <div style="font-size: 12px; color: #555;">Downloads an academic evaluation report formatted in Times New Roman 10pt with standardized tables and rationales.</div>
+        </div>
+        <button class="download-word-btn" onclick="exportWordDocument()">
+          📄 Download Automated Grading Report (.doc)
+        </button>
+      </div>
+
+      <!-- Detailed 40-Question Breakdown Table -->
+      <h3 style="color: var(--primary-navy); margin-bottom: 10px;">Itemized Candidate Answer & Rationale Audit</h3>
+      <table class="review-table" id="audit-table">
+        <thead>
+          <tr>
+            <th style="width: 5%;">Q#</th>
+            <th style="width: 18%;">Candidate Answer</th>
+            <th style="width: 20%;">Official Key / Variations</th>
+            <th style="width: 10%;">Result</th>
+            <th style="width: 47%;">Explanatory Grounding & Textual Evidence</th>
+          </tr>
+        </thead>
+        <tbody id="audit-table-body">
+          <!-- Dynamically generated rows -->
+        </tbody>
+      </table>
+
+      <div style="margin-top: 35px; text-align: center;">
+        <button class="part-nav-btn" style="padding: 8px 24px; font-size: 14px;" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Back to Top of Report</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* Global Application State */
+    const testState = {
+      currentPart: 1,
+      currentQuestionFocus: 1,
+      answers: {},
+      flagged: new Set(),
+      totalQuestions: 40,
+      timeRemainingSeconds: 34 * 60, // 34 minutes
+      timerInterval: null,
+      isSubmitted: false
+    };
+
+    /* Official Key Definitions & Evidence Rationales */
+    const officialExamKeys = {
+      1: {
+        answers: ["0789241508"],
+        displayKey: "0789241508",
+        rationale: "Dr. Harrison confirms his direct mobile number: '0789241508'."
+      },
+      2: {
+        answers: ["14", "14th", "fourteenth"],
+        displayKey: "14 / 14th / fourteenth",
+        rationale: "Dr. Harrison corrects the officer's initial assumption of the 12th: 'Actually, my transatlantic flight was rescheduled... I will be checking in on the 14th of October.'"
+      },
+      3: {
+        answers: ["8", "eight"],
+        displayKey: "8 / eight",
+        rationale: "Dr. Harrison states: 'My collaborative fellowship with the STEM department will span exactly 8 weeks'."
+      },
+      4: {
+        answers: ["executive"],
+        displayKey: "Executive",
+        rationale: "When presented with Studio or Executive options, he responds: 'I reserved the Executive Suite, as I require a dedicated study desk'."
+      },
+      5: {
+        answers: ["kitchen"],
+        displayKey: "kitchen",
+        rationale: "'Because I frequently prepare my own meals during late evening research hours, the unit must have access to a private kitchen.'"
+      },
+      6: {
+        answers: ["bank"],
+        displayKey: "bank",
+        rationale: "When asked about payment method, he states: 'I've already arranged that through our faculty finance officer via direct bank transfer.'"
+      },
+      7: {
+        answers: ["resident"],
+        displayKey: "resident",
+        rationale: "Sarah states: 'I will issue you a resident parking permit, which allows 24-hour access'."
+      },
+      8: {
+        answers: ["vegan"],
+        displayKey: "vegan",
+        rationale: "'I am strictly plant-based, so I require vegan options only, please.' (Vegetarian is a distractor; he specifically requests vegan)."
+      },
+      9: {
+        answers: ["gatehouse", "gate house"],
+        displayKey: "Gatehouse / Gate house",
+        rationale: "'When you arrive on the fourteenth, key collection and physical check-in will be handled at the West Gatehouse'."
+      },
+      10: {
+        answers: ["educonnect"],
+        displayKey: "EduConnect",
+        rationale: "Sarah specifies: 'Connect to the wireless network named 'EduConnect-Scholar''. Only 'EduConnect' fits the blank before '-Scholar'."
+      },
+      11: {
+        answers: ["B"],
+        displayKey: "B (locomotive repair depot)",
+        rationale: "Dr. Vance notes that people assume it was a water lab, but in reality it served as a 'locomotive repair depot'."
+      },
+      12: {
+        answers: ["B"],
+        displayKey: "B (mentor learners through empirical scientific inquiry)",
+        rationale: "Explicitly contrasts against coding contests, stating the mission is 'mentoring secondary learners through empirical scientific inquiry projects'."
+      },
+      13: {
+        answers: ["A"],
+        displayKey: "A (submitting electronic portal request 48h in advance)",
+        rationale: "Paper logs and departmental signatures are rejected; scholars must book 'by submitting an electronic portal request at least 48 hours in advance'."
+      },
+      14: {
+        answers: ["C"],
+        displayKey: "C (clean ocean robotics & microplastic extraction)",
+        rationale: "Biofuels was last year, AI is next year; the current semester is devoted to 'clean ocean robotics and automated microplastic extraction technologies'."
+      },
+      15: {
+        answers: ["A"],
+        displayKey: "A (present an authorized biometric security smartcard)",
+        rationale: "Researchers working after-hours must 'present an authorized biometric security smartcard at the automated turnstiles'."
+      },
+      16: {
+        answers: ["F"],
+        displayKey: "F (Robotics & Automation Workshop)",
+        rationale: "East side of the courtyard, adjacent to Seminar Lounge E, is Room F: 'our high-capacity Robotics & Automation Workshop'."
+      },
+      17: {
+        answers: ["C"],
+        displayKey: "C (Multimodal Learning Analytics Lab)",
+        rationale: "First room on the western flank of the courtyard is Room C: 'our brand new Multimodal Learning Analytics Lab'."
+      },
+      18: {
+        answers: ["D"],
+        displayKey: "D (Rapid 3D Prototyping Bay)",
+        rationale: "Immediately beyond Room C on the west corner is Room D: 'houses the Rapid 3D Prototyping Bay'."
+      },
+      19: {
+        answers: ["A"],
+        displayKey: "A (STEM Teacher Resource Archives)",
+        rationale: "Immediately to the left of the South Entrance Foyer is Room A: 'Room A is our STEM Teacher Resource Archives'."
+      },
+      20: {
+        answers: ["G"],
+        displayKey: "G (Central Lecture Theatre)",
+        rationale: "At the far northern apex of the courtyard stands Room G: 'Room G is our magnificent 250-seat Central Lecture and Demonstration Theatre'."
+      },
+      21: {
+        answers: ["A"],
+        displayKey: "A (Liam)",
+        rationale: "Liam states: 'In my view, the twenty-four participants we recruited for the preliminary trial run simply did not give us the statistical power'."
+      },
+      22: {
+        answers: ["B"],
+        displayKey: "B (Maya)",
+        rationale: "Maya expresses her concern that cameras will 'induce artificial behavioral reactivity, leading students to act unnaturally'."
+      },
+      23: {
+        answers: ["C"],
+        displayKey: "C (Professor Jenkins)",
+        rationale: "Prof. Jenkins mandates: 'every single instructional phase in the 5E inquiry cycle... must be strictly standardized to identical time allocations'."
+      },
+      24: {
+        answers: ["A"],
+        displayKey: "A (Liam)",
+        rationale: "Liam notes: 'our research team will have to perform systematic manual validation for all specialized scientific terminology'."
+      },
+      25: {
+        answers: ["B"],
+        displayKey: "B (Maya)",
+        rationale: "Maya argues: 'our evaluative instruments must test conceptual transfer across novel problem domains, rather than superficial factual recall'."
+      },
+      26: {
+        answers: ["A"],
+        displayKey: "A (misconceptions solidify during early secondary years)",
+        rationale: "Liam explains literature shows 'it is specifically during early secondary adolescence where ingrained conceptual misconceptions... become deeply entrenched'."
+      },
+      27: {
+        answers: ["B"],
+        displayKey: "B (dual parental and student assent required multilingual documentation)",
+        rationale: "Maya explains: 'generating comprehensive informed consent forms required professional translation into three regional community languages'."
+      },
+      28: {
+        answers: ["B"],
+        displayKey: "B (utilize double-blind coding rubrics)",
+        rationale: "Liam states: 'We decided to implement double-blind coding rubrics. The two independent graduate coders will analyze anonymized video clips'."
+      },
+      29: {
+        answers: ["B"],
+        displayKey: "B (execute parallel inter-rater reliability calibration checks every 2 weeks)",
+        rationale: "Prof. Jenkins urges them to 'execute parallel inter-rater reliability calibration checks every two weeks to prevent coder drift'."
+      },
+      30: {
+        answers: ["A"],
+        displayKey: "A (revise diagnostic pre-test rubric to incorporate CER frameworks)",
+        rationale: "Liam confirms: 'before Friday, we must revise our diagnostic pre-test rubric to fully incorporate Claim-Evidence-Reasoning, or CER, argumentation frameworks'."
+      },
+      31: {
+        answers: ["capacity"],
+        displayKey: "capacity",
+        rationale: "'working memory operates under a strictly constrained processing capacity.'"
+      },
+      32: {
+        answers: ["schemas", "schemata"],
+        displayKey: "schemas / schemata",
+        rationale: "'organizes vast networks of interconnected knowledge into sophisticated cognitive structures termed schemas.'"
+      },
+      33: {
+        answers: ["difficulty"],
+        displayKey: "difficulty",
+        rationale: "'dictated directly by the innate intellectual difficulty and element interactivity of the scientific subject matter.'"
+      },
+      34: {
+        answers: ["design"],
+        displayKey: "design",
+        rationale: "'generated by suboptimal instructional design, confusing classroom worksheets...'"
+      },
+      35: {
+        answers: ["effort"],
+        displayKey: "effort",
+        rationale: "'germane load represents the productive mental effort devoted by the learner to constructing and automating meaningful cognitive schemas.'"
+      },
+      36: {
+        answers: ["time"],
+        displayKey: "time",
+        rationale: "'when complementary representations are physically separated in space, or temporally separated in time...'"
+      },
+      37: {
+        answers: ["redundancy"],
+        displayKey: "redundancy",
+        rationale: "'duplicating spoken narration with identical on-screen text creates severe cognitive redundancy.'"
+      },
+      38: {
+        answers: ["control"],
+        displayKey: "control",
+        rationale: "'If novice secondary students lack personal control over playback speed, pause, and rewind features...'"
+      },
+      39: {
+        answers: ["scaffolding"],
+        displayKey: "scaffolding",
+        rationale: "'Demonstrating fully articulated step-by-step problem solutions functions as essential cognitive scaffolding'."
+      },
+      40: {
+        answers: ["retention"],
+        displayKey: "retention",
+        rationale: "'regular low-stakes retrieval quizzes and practice testing dramatically enhances long-term conceptual retention'."
+      }
+    };
+
+    const verbatimScriptLines = [
+      // Part 1
+      { speaker: "Announcer", text: "IDP IELTS Practice Test 01. Listening Test. Part 1. You will hear a conversation between an accommodation officer and a visiting scholar.", part: 1 },
+      { speaker: "Sarah Miller", text: "Good morning! Welcome to the University Academic Visitors Centre. How can I assist you today?", part: 1 },
+      { speaker: "Dr. Richard Harrison", text: "Good morning. My name is Dr. Richard Harrison. I'm a visiting research fellow in the Department of Educational Technology, and I need to finalize my booking for accommodation at the Scholars Lodge.", part: 1 },
+      { speaker: "Sarah Miller", text: "Ah, excellent, Dr. Harrison! Let me pull up your preliminary file on the system. Could you confirm your contact telephone number for our records, please?", part: 1 },
+      { speaker: "Dr. Richard Harrison", text: "Certainly. My direct mobile number is 0789241508.", part: 1 },
+      { speaker: "Sarah Miller", text: "Thank you: 0 7 8 9 2, 4 1 5, 0 8. Got it. Now, regarding your arrival date, our system shows you requested check-in on the twelfth of October, but let me check room turnover.", part: 1 },
+      { speaker: "Dr. Richard Harrison", text: "Actually, my transatlantic flight was rescheduled, so I won't arrive on the twelfth. I will be checking in on the 14th of October.", part: 1 },
+      { speaker: "Sarah Miller", text: "The fourteenth of October—noted. And how long do you intend to stay with us during this research semester?", part: 1 },
+      { speaker: "Dr. Richard Harrison", text: "My collaborative fellowship with the STEM department will span exactly 8 weeks, before I return for the winter break.", part: 1 },
+      { speaker: "Sarah Miller", text: "Perfect. We have two accommodation categories available for long-term visiting faculty: the Studio Apartment or the Executive Suite. Which did you select?", part: 1 },
+      { speaker: "Dr. Richard Harrison", text: "I reserved the Executive Suite, as I require a dedicated study desk for my manuscript writing.", part: 1 },
+      { speaker: "Sarah Miller", text: "A wise choice. Do you have any specific physical room requirements or accessibility preferences?", part: 1 },
+      { speaker: "Dr. Richard Harrison", text: "Yes, absolutely. Because I frequently prepare my own meals during late evening research hours, the unit must have access to a private kitchen. I prefer not to use the communal floor facility.", part: 1 },
+      { speaker: "Sarah Miller", text: "All Executive units have fully fitted private kitchens. To confirm your reservation, we require a three-hundred-pound security deposit. You can pay via credit card, or directly through the university portal.", part: 1 },
+      { speaker: "Dr. Richard Harrison", text: "I've already arranged that through our faculty finance officer via direct bank transfer.", part: 1 },
+      { speaker: "Sarah Miller", text: "Splendid, the finance confirmation has just appeared on my screen. Now, will you be bringing a private vehicle to campus?", part: 1 },
+      { speaker: "Dr. Richard Harrison", text: "Yes, I have rented a hybrid vehicle for field visits. I'll need a parking pass.", part: 1 },
+      { speaker: "Sarah Miller", text: "I will issue you a resident parking permit, which allows 24-hour access to the West Gate bay.", part: 1 },
+      { speaker: "Dr. Richard Harrison", text: "Excellent. And what about morning catering?", part: 1 },
+      { speaker: "Sarah Miller", text: "Complimentary continental breakfast is served in the Lodge Refectory from seven until nine. Do you have any specific dietary requirements?", part: 1 },
+      { speaker: "Dr. Richard Harrison", text: "I am strictly plant-based, so I require vegan options only, please.", part: 1 },
+      { speaker: "Sarah Miller", text: "Noted on your profile. When you arrive on the fourteenth, key collection and physical check-in will be handled at the West Gatehouse, right next to the barrier entrance, rather than the main university administration desk.", part: 1 },
+      { speaker: "Dr. Richard Harrison", text: "That is very convenient. And what about high-speed internet access for my research laptops?", part: 1 },
+      { speaker: "Sarah Miller", text: "In your welcome pack, you'll find login credentials for our secure university network. Connect to the wireless network named 'EduConnect-Scholar'.", part: 1 },
+      { speaker: "Dr. Richard Harrison", text: "Wonderful! Thank you so much for your thorough assistance, Sarah.", part: 1 },
+
+      // Part 2
+      { speaker: "Announcer", text: "Part 2. You will hear an orientation tour of a university science and innovation hub.", part: 2 },
+      { speaker: "Dr. Eleanor Vance", text: "Good afternoon, esteemed visiting educators, doctoral candidates, and research fellows! I am Dr. Eleanor Vance, Director of Academic Partnerships at the Science Discovery Centre. We are thrilled to welcome you to our university STEM hub.", part: 2 },
+      { speaker: "Dr. Eleanor Vance", text: "Before we embark on our physical walk-through, allow me to share a brief historical perspective. Looking at our sleek glass facade and modern steel trusses today, many visitors assume this facility was purpose-built as an environmental testing station or a municipal water laboratory. In reality, during the late nineteenth century, this industrial structure served as a major regional locomotive repair depot, servicing freight engines that transported coal and grain across the Midlands, before its complete architectural transformation into our university innovation center.", part: 2 },
+      { speaker: "Dr. Eleanor Vance", text: "Our core mandate here extends far beyond static museum displays. Over the past three years, our flagship secondary education partnership has engaged over two thousand high school learners across the province. Rather than training students for standardized computing exams or coding contests, our educational mission is strictly centered on mentoring secondary learners through empirical scientific inquiry projects, fostering authentic hypothesis-testing, data collection, and claim-evidence-reasoning skills.", part: 2 },
+      { speaker: "Dr. Eleanor Vance", text: "For those of you conducting empirical fieldwork this term, our analytical instrumentation and laboratory suites are accessible under formal booking protocols. You no longer need to seek departmental signatures or paper requisition sheets. Instead, scholars must reserve instruments by submitting an electronic portal request at least 48 hours in advance, ensuring our technical staff can calibrate the sensors and laser cutters.", part: 2 },
+      { speaker: "Dr. Eleanor Vance", text: "Each semester, our public gallery hosts an interactive exhibition highlighting cutting-edge sustainable science. Last year we covered agricultural biofuels, and next year will showcase AI in diagnostics. However, for this current semester, our central interactive gallery is devoted exclusively to clean ocean robotics and automated microplastic extraction technologies, including real-time telemetry from marine research vessels.", part: 2 },
+      { speaker: "Dr. Eleanor Vance", text: "Finally, a critical note regarding building security. The center operates public access between 08:30 and 17:30. However, research fellows requiring evening or weekend lab access are permitted to work late, provided they present an authorized biometric security smartcard at the automated turnstiles.", part: 2 },
+      { speaker: "Dr. Eleanor Vance", text: "Now, if you will refer to the ground floor architectural map on your mobile screens, let me orient you to our primary facilities. We are currently standing inside the Main South Entrance. Directly ahead of you is the spacious Central Foyer. If you look immediately to your left from the entrance, Room A is our STEM Teacher Resource Archives. Directly across on your right, Room B houses the Public Welcome and Ticketing Reception.", part: 2 },
+      { speaker: "Dr. Eleanor Vance", text: "Now, walking straight forward through the Foyer and following the central corridor north, you enter our open-air courtyard. On the western flank of this courtyard, you will find two specialized research facilities. The first room you encounter, Room C, is our brand new Multimodal Learning Analytics Lab, equipped with ceiling-mounted tracking cameras and acoustic arrays. Just beyond it on the west corner, Room D houses the Rapid 3D Prototyping Bay.", part: 2 },
+      { speaker: "Dr. Eleanor Vance", text: "Looking across to the eastern flank of the courtyard, Room E is our Seminar and Breakout Lounge, while immediately adjacent to it, Room F, is our high-capacity Robotics and Automation Workshop, featuring multi-axis articulated robotic arms. Lastly, situated prominently at the far northern apex of the courtyard, Room G is our magnificent 250-seat Central Lecture and Demonstration Theatre, where our plenary lectures will be held.", part: 2 },
+
+      // Part 3
+      { speaker: "Announcer", text: "Part 3. You will hear a doctoral research consultation discussing inquiry methodology.", part: 3 },
+      { speaker: "Professor Jenkins", text: "Come in, Maya, Liam. Have a seat. I've reviewed your preliminary draft for the doctoral research grant on multimodal learning analytics in secondary school chemistry classrooms. Let's examine your experimental setup.", part: 3 },
+      { speaker: "Liam", text: "Thank you, Professor. We were slightly anxious about the statistical validation of our initial run. In my view, the twenty-four participants we recruited for the preliminary trial run simply did not give us the statistical power necessary to detect subtle differences between our inquiry conditions.", part: 3 },
+      { speaker: "Professor Jenkins", text: "I concur, Liam. Twenty-four was adequate for testing equipment compatibility, but your formal intervention study will require at least one hundred and twenty learners across six classrooms.", part: 3 },
+      { speaker: "Maya", text: "Professor, my primary methodological reservation centers on our data capture technique. Because we intend to position four dynamic 360-degree cameras and table microphones in every student group, I am genuinely concerned that the presence of high-profile recording apparatus will induce artificial behavioral reactivity, leading students to act unnaturally rather than engaging in genuine problem-solving.", part: 3 },
+      { speaker: "Professor Jenkins", text: "A very valid apprehension, Maya. That's why we build in a one-week habituation period where the cameras run without data recording, allowing the secondary pupils to become oblivious to their presence. Now, what about the pedagogical fidelity of your inquiry lessons?", part: 3 },
+      { speaker: "Professor Jenkins", text: "As your faculty advisor, I must emphasize that you cannot allow teachers to arbitrarily expand the explore phase. If you wish to draw rigorous causal inferences, every single instructional phase in the 5E inquiry cycle—Engage, Explore, Explain, Elaborate, and Evaluate—must be strictly standardized to identical time allocations across all experimental cohorts.", part: 3 },
+      { speaker: "Liam", text: "Understood, Professor. We will produce strict pacing timers for the instructors. On the technical side, I noticed when we tested automated AI transcription tools on student dialogues, the algorithms frequently distorted chemical terminology—confusing 'titration' with 'filtration', for example. It is clear that we cannot rely blindly on AI; our research team will have to perform systematic manual validation for all specialized scientific terminology.", part: 3 },
+      { speaker: "Maya", text: "Absolutely agreed, Liam. And concerning our diagnostic pre- and post-tests: too many prior studies in science education merely measure whether students remember memorized chemical definitions. For our study to make an impact in the learning sciences, our evaluative instruments must test conceptual transfer across novel problem domains, rather than superficial factual recall.", part: 3 },
+      { speaker: "Professor Jenkins", text: "Excellent, Maya. That aligns with our theoretical framework. Now, looking at your contextual justification: what led you to focus specifically on Grade 9 and 10 secondary school pupils?", part: 3 },
+      { speaker: "Liam", text: "Well, our literature review highlighted that while primary students are naturally curious, it is specifically during early secondary adolescence where ingrained conceptual misconceptions about atomic models and thermodynamic systems become deeply entrenched and resistant to instruction.", part: 3 },
+      { speaker: "Maya", text: "Yes, and regarding our institutional ethics review board submission: we didn't have issues with fees, but because our partner school serves a high proportion of immigrant and bilingual families, generating comprehensive informed consent forms required professional translation into three regional community languages to ensure valid parental assent.", part: 3 },
+      { speaker: "Professor Jenkins", text: "Thorough ethics protocol is paramount. And how do you plan to mitigate potential researcher observation bias when coding classroom videotapes?", part: 3 },
+      { speaker: "Liam", text: "We decided to implement double-blind coding rubrics. The two independent graduate coders will analyze anonymized video clips without knowing whether a group was assigned to the multimodal AI feedback condition or the standard teacher inquiry condition.", part: 3 },
+      { speaker: "Professor Jenkins", text: "That will substantially enhance your empirical credibility. Now, regarding your qualitative data coding timeline: you originally proposed waiting until all longitudinal post-tests were completed in December before coding. I strongly urge you to alter this schedule. You should execute parallel inter-rater reliability calibration checks every two weeks to prevent coder drift and catch discrepancies early.", part: 3 },
+      { speaker: "Maya", text: "That makes immense sense, Professor. We will schedule bi-weekly calibration reviews on alternate Mondays. So, what is our immediate priority for this week before we reconvene on Friday?", part: 3 },
+      { speaker: "Liam", text: "I believe we agreed that before Friday, we must revise our diagnostic pre-test rubric to fully incorporate Claim-Evidence-Reasoning, or CER, argumentation frameworks.", part: 3 },
+      { speaker: "Professor Jenkins", text: "Precisely. Refine the CER rubric, email it to me by Thursday noon, and we will sign off on the ethics packet Friday morning.", part: 3 },
+
+      // Part 4
+      { speaker: "Announcer", text: "Part 4. You will hear an academic lecture on Cognitive Load Theory and instructional design.", part: 4 },
+      { speaker: "Prof. Jonathan Vance", text: "Welcome, colleagues and postgraduate researchers in education. In today's seminar, we explore the empirical intersection of Cognitive Load Theory—originally formulated by John Sweller—and modern multimodal instructional design in secondary science classrooms.", part: 4 },
+      { speaker: "Prof. Jonathan Vance", text: "To grasp why secondary science students frequently struggle with abstract empirical concepts, we must first review the structural architecture of human cognitive processing. The human cognitive system comprises two primary components: working memory and long-term memory. Working memory is the cognitive workbench where conscious information processing takes place. However, its most critical evolutionary vulnerability is that working memory operates under a strictly constrained processing capacity. It can simultaneously manipulate only a minute number of novel information elements—typically four to five novel items—for mere seconds before cognitive decay sets in.", part: 4 },
+      { speaker: "Prof. Jonathan Vance", text: "By contrast, long-term memory functions as an essentially infinite, durable storehouse. Rather than storing fragmented bits of information, long-term memory organizes vast networks of interconnected knowledge into sophisticated cognitive structures termed schemas. When a student develops expert proficiency in secondary chemistry or physics, thousands of individual factual elements are encapsulated into a single, automated schema, freeing up working memory for higher-order reasoning.", part: 4 },
+      { speaker: "Prof. Jonathan Vance", text: "Cognitive Load Theory categorizes total mental burden into a tripartite taxonomy. The first dimension is Intrinsic Cognitive Load. This load is intrinsic to the nature of the learning task itself. It is dictated directly by the innate intellectual difficulty and element interactivity of the scientific subject matter. For example, balancing a complex redox equation possesses higher intrinsic load than memorizing element symbols because all chemical variables interact simultaneously.", part: 4 },
+      { speaker: "Prof. Jonathan Vance", text: "The second dimension is Extraneous Cognitive Load. This load is completely unnecessary and detrimental to learning. It is generated by suboptimal instructional design, confusing classroom worksheets, cluttered computer interfaces, or redundant explanations. Our fundamental goal as instructional architects is to systematically eliminate extraneous cognitive load.", part: 4 },
+      { speaker: "Prof. Jonathan Vance", text: "The third dimension is Germane Cognitive Load. Rather than being a burden, germane load represents the productive mental effort devoted by the learner to constructing and automating meaningful cognitive schemas. When instructional design removes extraneous distraction, students can invest their remaining working memory bandwidth into germane processing.", part: 4 },
+      { speaker: "Prof. Jonathan Vance", text: "Now, let us examine how these cognitive constraints manifest in multimodal science environments. First, consider the Split-Attention Effect. When a teacher presents a diagram of cellular respiration and places the explanatory text in a separate box below the diagram, the student’s visual gaze must constantly oscillate between the graphic and the text. Empirical research demonstrates that when complementary representations are physically separated in space, or temporally separated in time, working memory is overloaded trying to mentally integrate the two sources.", part: 4 },
+      { speaker: "Prof. Jonathan Vance", text: "Second, we observe the Redundancy Effect. Many multimedia science software programs present an animated diagram while simultaneously playing spoken narration AND displaying identical verbatim on-screen text subtitles. Educational psychologists have proven that duplicating spoken narration with identical on-screen text creates severe cognitive redundancy. The visual channel is overwhelmed processing both the written words and the moving diagram, thereby impeding conceptual comprehension.", part: 4 },
+      { speaker: "Prof. Jonathan Vance", text: "Third, we must address the Transient Information Hazard in educational animations. Dynamic computer simulations of planetary orbits or molecular collisions vanish rapidly from the screen. If novice secondary students lack personal control over playback speed, pause, and rewind features, the fleeting nature of the visual data causes rapid cognitive failure.", part: 4 },
+      { speaker: "Prof. Jonathan Vance", text: "What, then, are our evidence-based pedagogical interventions? First, before presenting novice learners with unguided, open-ended problem-solving tasks, educators should provide structured worked examples. Demonstrating fully articulated step-by-step problem solutions functions as essential cognitive scaffolding, reducing initial cognitive overload.", part: 4 },
+      { speaker: "Prof. Jonathan Vance", text: "Finally, once foundational schemas are formed, incorporating regular low-stakes retrieval quizzes and practice testing dramatically enhances long-term conceptual retention by strengthening synaptic pathways and promoting flexible knowledge transfer in science examinations. Thank you for your attention.", part: 4 }
+    ];
+
+    let currentSpeechIndex = 0;
+    let isAudioPlaying = false;
+    let audioContext = null;
+
+    function playSectionChime() {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        if (!audioContext) audioContext = new AudioCtx();
+        if (audioContext.state === 'suspended') {
+          audioContext.resume();
+        }
+        const osc = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(587.33, audioContext.currentTime); // D5
+        osc.frequency.exponentialRampToValueAtTime(880, audioContext.currentTime + 0.25); // A5
+        gain.gain.setValueAtTime(0.12, audioContext.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.45);
+        osc.connect(gain);
+        gain.connect(audioContext.destination);
+        osc.start();
+        osc.stop(audioContext.currentTime + 0.45);
+      } catch(e) {
+        console.debug("Web Audio not supported or blocked");
+      }
+    }
+
+    function toggleAudioPlayback() {
+      if (!('speechSynthesis' in window)) {
+        document.getElementById('audio-status-label').textContent = "Speech synthesis unsupported in this browser.";
+        return;
+      }
+
+      if (isAudioPlaying) {
+        window.speechSynthesis.cancel();
+        isAudioPlaying = false;
+        updateAudioButtonUI(false, "Audio: Paused");
+      } else {
+        isAudioPlaying = true;
+        updateAudioButtonUI(true, "Audio: Initializing...");
+        playSectionChime();
+        speakNextScriptLine();
+      }
+    }
+
+    function speakNextScriptLine() {
+      if (!isAudioPlaying) return;
+
+      if (currentSpeechIndex >= verbatimScriptLines.length) {
+        isAudioPlaying = false;
+        updateAudioButtonUI(false, "Audio: Complete");
+        return;
+      }
+
+      const item = verbatimScriptLines[currentSpeechIndex];
+      const utterance = new SpeechSynthesisUtterance(item.text);
+      utterance.rate = 0.95; // IELTS natural cadence
+
+      // Speaker-specific pitch adjustments
+      if (item.speaker === "Sarah Miller" || item.speaker === "Maya") {
+        utterance.pitch = 1.15;
+      } else if (item.speaker === "Dr. Eleanor Vance") {
+        utterance.pitch = 1.05;
+      } else if (item.speaker === "Professor Jenkins" || item.speaker === "Prof. Jonathan Vance") {
+        utterance.pitch = 0.85;
+      } else if (item.speaker === "Dr. Richard Harrison") {
+        utterance.pitch = 0.95;
+      } else {
+        utterance.pitch = 1.0;
+      }
+
+      // Synchronize active part view if speaker transitions to a new part
+      if (item.part && item.part !== testState.currentPart) {
+        switchPart(item.part);
+        playSectionChime();
+      }
+
+      document.getElementById('audio-status-label').textContent = `[P${item.part}] ${item.speaker}: speaking...`;
+
+      utterance.onend = function() {
+        currentSpeechIndex++;
+        // Short pause between lines for realism
+        setTimeout(() => {
+          if (isAudioPlaying) {
+            speakNextScriptLine();
+          }
+        }, 400);
+      };
+
+      utterance.onerror = function() {
+        currentSpeechIndex++;
+        if (isAudioPlaying) speakNextScriptLine();
+      };
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function updateAudioButtonUI(playing, statusText) {
+      const btn = document.getElementById('audio-toggle-btn');
+      const icon = document.getElementById('audio-play-icon');
+      const statusLabel = document.getElementById('audio-status-label');
+
+      if (playing) {
+        btn.classList.add('speaking');
+        icon.textContent = "⏸ Pause Exam Audio";
+      } else {
+        btn.classList.remove('speaking');
+        icon.textContent = "▶ Play Exam Audio";
+      }
+      statusLabel.textContent = statusText;
+    }
+
+    function startTestTimer() {
+      const clockEl = document.getElementById('countdown-clock');
+      testState.timerInterval = setInterval(() => {
+        if (testState.timeRemainingSeconds <= 0) {
+          clearInterval(testState.timerInterval);
+          finalizeSubmission();
+          return;
+        }
+
+        testState.timeRemainingSeconds--;
+        const mins = Math.floor(testState.timeRemainingSeconds / 60);
+        const secs = testState.timeRemainingSeconds % 60;
+        clockEl.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+
+        if (testState.timeRemainingSeconds <= 120) {
+          clockEl.style.color = "#ff3d00"; // 2-minute review alert
+        }
+      }, 1000);
+    }
+
+    function switchPart(partNumber) {
+      testState.currentPart = partNumber;
+
+      // Update part content containers
+      for (let p = 1; p <= 4; p++) {
+        const el = document.getElementById(`part-container-${p}`);
+        if (el) el.style.display = (p === partNumber) ? 'block' : 'none';
+
+        const btn = document.getElementById(`btn-part-${p}`);
+        if (btn) {
+          if (p === partNumber) btn.classList.add('active');
+          else btn.classList.remove('active');
+        }
+      }
+
+      // Scroll question area to top
+      const scrollArea = document.getElementById('paper-scroll-area');
+      if (scrollArea) scrollArea.scrollTop = 0;
+    }
+
+    function initPalette() {
+      const palette = document.getElementById('question-palette');
+      palette.innerHTML = '';
+      for (let i = 1; i <= 40; i++) {
+        const btn = document.createElement('button');
+        btn.className = 'palette-btn';
+        btn.id = `palette-btn-${i}`;
+        btn.textContent = i;
+        btn.onclick = () => jumpToQuestion(i);
+        palette.appendChild(btn);
+      }
+    }
+
+    function jumpToQuestion(qNum) {
+      testState.currentQuestionFocus = qNum;
+      // Determine which part contains question
+      let targetPart = 1;
+      if (qNum >= 11 && qNum <= 20) targetPart = 2;
+      else if (qNum >= 21 && qNum <= 30) targetPart = 3;
+      else if (qNum >= 31 && qNum <= 40) targetPart = 4;
+
+      if (targetPart !== testState.currentPart) {
+        switchPart(targetPart);
+      }
+
+      // Scroll to specific element
+      setTimeout(() => {
+        let el = document.getElementById(`q${qNum}`);
+        if (!el) {
+          const radio = document.querySelector(`input[name="q${qNum}"]`);
+          if (radio) el = radio.closest('.question-row');
+        }
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          if (el.tagName === 'INPUT' || el.tagName === 'SELECT') {
+            el.focus();
+          }
+        }
+      }, 50);
+    }
+
+    function handleInputAnswer(qNum, value) {
+      const cleanVal = value.trim();
+      if (cleanVal.length > 0) {
+        testState.answers[qNum] = cleanVal;
+        markPaletteAnswered(qNum, true);
+      } else {
+        delete testState.answers[qNum];
+        markPaletteAnswered(qNum, false);
+      }
+    }
+
+    function handleRadioAnswer(qNum, value) {
+      testState.answers[qNum] = value;
+      markPaletteAnswered(qNum, true);
+    }
+
+    function handleSelectAnswer(qNum, value) {
+      if (value && value !== "") {
+        testState.answers[qNum] = value;
+        markPaletteAnswered(qNum, true);
+      } else {
+        delete testState.answers[qNum];
+        markPaletteAnswered(qNum, false);
+      }
+    }
+
+    function markPaletteAnswered(qNum, isAnswered) {
+      const btn = document.getElementById(`palette-btn-${qNum}`);
+      if (btn) {
+        if (isAnswered) btn.classList.add('answered');
+        else btn.classList.remove('answered');
+      }
+    }
+
+    function toggleCurrentFlag() {
+      const qNum = testState.currentQuestionFocus;
+      const btn = document.getElementById(`palette-btn-${qNum}`);
+      if (!btn) return;
+
+      if (testState.flagged.has(qNum)) {
+        testState.flagged.delete(qNum);
+        btn.classList.remove('flagged');
+      } else {
+        testState.flagged.add(qNum);
+        btn.classList.add('flagged');
+      }
+    }
+
+    function populateTranscriptDrawer() {
+      const container = document.getElementById('transcript-body-content');
+      container.innerHTML = verbatimScriptLines.map(line => `
+        <div style="margin-bottom: 10px; border-bottom: 1px dotted #ccc; padding-bottom: 4px;">
+          <strong style="color: var(--primary-navy);">${line.speaker}:</strong> 
+          <span>${line.text}</span>
+        </div>
+      `).join('');
+    }
+
+    function toggleTranscriptModal() {
+      const drawer = document.getElementById('transcript-drawer');
+      if (drawer.style.display === 'flex') {
+        drawer.style.display = 'none';
+      } else {
+        populateTranscriptDrawer();
+        drawer.style.display = 'flex';
+      }
+    }
+
+    function confirmSubmitTest() {
+      const totalAnswered = Object.keys(testState.answers).length;
+      const modal = document.getElementById('confirm-modal');
+      const text = document.getElementById('confirm-modal-text');
+
+      text.innerHTML = `You have completed <strong>${totalAnswered} of 40</strong> questions.<br>
+      ${40 - totalAnswered} questions remain unattempted.<br><br>
+      Are you sure you wish to submit your examination now?`;
+      modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('confirm-modal').style.display = 'none';
+    }
+
+    function finalizeSubmission() {
+      if (testState.isSubmitted) return;
+      testState.isSubmitted = true;
+      closeModal();
+      clearInterval(testState.timerInterval);
+
+      // Halt audio
+      if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+      }
+      isAudioPlaying = false;
+
+      // Grade the exam
+      evaluateMockTest();
+    }
+
+    function evaluateMockTest() {
+      let rawScore = 0;
+      const auditResults = [];
+
+      for (let i = 1; i <= 40; i++) {
+        const candidateRaw = testState.answers[i] || "";
+        const cleanCandidate = candidateRaw.trim().toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, "");
+        const official = officialExamKeys[i];
+
+        let isCorrect = false;
+        for (const variant of official.answers) {
+          const cleanVariant = variant.toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, "");
+          if (cleanCandidate === cleanVariant) {
+            isCorrect = true;
+            break;
+          }
+        }
+
+        if (isCorrect) rawScore++;
+
+        auditResults.push({
+          qNum: i,
+          candidate: candidateRaw || "<em>(No Answer)</em>",
+          key: official.displayKey,
+          isCorrect: isCorrect,
+          rationale: official.rationale
+        });
+      }
+
+      // Official Band Score Conversion Table
+      let band = "4.0";
+      let cefr = "B1";
+      let profileTitle = "Limited User";
+      let profileDesc = "Satisfactory basic comprehension; copes with everyday communication but struggles with subtle academic inferences.";
+
+      if (rawScore >= 39) {
+        band = "9.0"; cefr = "C2"; profileTitle = "Expert User";
+        profileDesc = "Has fully operational command of the language: appropriate, fluent, and accurate with complete academic understanding.";
+      } else if (rawScore >= 37) {
+        band = "8.5"; cefr = "C2"; profileTitle = "Very Good User";
+        profileDesc = "Has fully operational command with only occasional unsystematic inaccuracies. Handles complex detailed academic debate well.";
+      } else if (rawScore >= 35) {
+        band = "8.0"; cefr = "C1"; profileTitle = "Very Good User";
+        profileDesc = "Handles complex, detailed argumentation with minor occasional unsystematic inaccuracies. Flawless contextual inference.";
+      } else if (rawScore >= 32) {
+        band = "7.5"; cefr = "C1"; profileTitle = "Good User";
+        profileDesc = "Handles complex discourse well; understands detailed academic discussions with minor gaps in unfamiliar settings.";
+      } else if (rawScore >= 30) {
+        band = "7.0"; cefr = "C1"; profileTitle = "Good User";
+        profileDesc = "Generally handles complex language well; understands detailed reasoning in academic lectures and dialogues.";
+      } else if (rawScore >= 26) {
+        band = "6.5"; cefr = "B2"; profileTitle = "Competent User";
+        profileDesc = "Competent comprehension of main ideas; can understand most academic discussions in familiar contexts.";
+      } else if (rawScore >= 23) {
+        band = "6.0"; cefr = "B2"; profileTitle = "Competent User";
+        profileDesc = "Satisfactory basic comprehension; copes with everyday communication but struggles with subtle academic inferences.";
+      } else if (rawScore >= 20) {
+        band = "5.5"; cefr = "B1"; profileTitle = "Modest User";
+        profileDesc = "Partial command of the language, coping with overall meaning in most situations, though is likely to make many mistakes.";
+      } else if (rawScore >= 16) {
+        band = "5.0"; cefr = "B1"; profileTitle = "Modest User";
+        profileDesc = "Tends to break down in academic listening comprehension under fast speech or dense conceptual arguments.";
+      } else if (rawScore >= 13) {
+        band = "4.5"; cefr = "A2"; profileTitle = "Limited User";
+        profileDesc = "Basic competence is limited to familiar situations; frequent problems in understanding and expression.";
+      }
+
+      // Store in global window for word document generator
+      window.lastEvaluationData = {
+        rawScore,
+        band,
+        cefr,
+        percentage: Math.round((rawScore / 40) * 100),
+        competencyTitle: profileTitle,
+        competencyDesc: profileDesc,
+        candidateName: "Dr. Richard Harrison",
+        candidateId: "TH-982104-CD",
+        testDate: new Date().toISOString().split('T')[0],
+        auditResults
+      };
+
+      // Populate Report Screen UI
+      document.getElementById('report-raw-score').textContent = `${rawScore} / 40`;
+      document.getElementById('report-band-score').textContent = `Band ${band}`;
+      document.getElementById('report-badge-band').textContent = `Band ${band}`;
+      document.getElementById('report-percentage').textContent = `${window.lastEvaluationData.percentage}%`;
+      document.getElementById('report-cefr-level').textContent = cefr;
+      document.getElementById('report-competency-title').textContent = profileTitle;
+      document.getElementById('report-competency-desc').textContent = profileDesc;
+      document.getElementById('report-timestamp').textContent = `Date: ${window.lastEvaluationData.testDate}`;
+
+      // Render Itemized Audit Table
+      const tbody = document.getElementById('audit-table-body');
+      tbody.innerHTML = auditResults.map(item => `
+        <tr>
+          <td style="font-weight: bold; text-align: center;">Q${item.qNum}</td>
+          <td>${item.candidate}</td>
+          <td style="font-weight: bold; color: var(--primary-navy);">${item.key}</td>
+          <td class="${item.isCorrect ? 'res-correct' : 'res-incorrect'}" style="text-align: center;">
+            ${item.isCorrect ? '✔ Correct' : '✘ Incorrect'}
+          </td>
+          <td style="font-size: 13px; color: #333333;">${item.rationale}</td>
+        </tr>
+      `).join('');
+
+      // Show Report Screen
+      document.getElementById('report-screen').style.display = 'block';
+      window.scrollTo(0, 0);
+    }
+
+    function exportWordDocument() {
+      const d = window.lastEvaluationData;
+      if (!d) return;
+
+      const rowsHtml = d.auditResults.map(item => `
+        <tr>
+          <td style="border: 1pt solid #b0bec5; padding: 5pt 7pt; text-align: center; font-family: 'Times New Roman', serif; font-size: 9.5pt;">Q${item.qNum}</td>
+          <td style="border: 1pt solid #b0bec5; padding: 5pt 7pt; font-family: 'Times New Roman', serif; font-size: 9.5pt;">${item.candidate}</td>
+          <td style="border: 1pt solid #b0bec5; padding: 5pt 7pt; font-family: 'Times New Roman', serif; font-size: 9.5pt; font-weight: bold; color: #14284b;">${item.key}</td>
+          <td style="border: 1pt solid #b0bec5; padding: 5pt 7pt; text-align: center; font-family: 'Times New Roman', serif; font-size: 9.5pt; font-weight: bold; color: ${item.isCorrect ? '#1b5e20' : '#b71c1c'}; background-color: ${item.isCorrect ? '#e8f5e9' : '#ffebee'};">
+            ${item.isCorrect ? 'Correct' : 'Incorrect'}
+          </td>
+          <td style="border: 1pt solid #b0bec5; padding: 5pt 7pt; font-family: 'Times New Roman', serif; font-size: 9pt; color: #333333;">${item.rationale}</td>
+        </tr>
+      `).join('');
+
+      const wordDocumentContent = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head>
+          <meta charset="utf-8">
+          <title>IELTS Academic Listening Evaluation Dossier</title>
+          <style>
+            @page Section1 {
+              size: 8.5in 11.0in;
+              margin: 0.8in 0.8in 0.8in 0.8in;
+              mso-header-margin: 0.5in;
+              mso-footer-margin: 0.5in;
+              mso-paper-source: 0;
+            }
+            div.Section1 { page: Section1; }
+            body {
+              font-family: 'Times New Roman', Times, serif;
+              font-size: 10.0pt;
+              line-height: 1.35;
+              color: #111111;
+            }
+            h1 {
+              font-family: 'Times New Roman', Times, serif;
+              font-size: 17pt;
+              font-weight: bold;
+              color: #14284b;
+              margin-bottom: 2pt;
+            }
+            h2 {
+              font-family: 'Times New Roman', Times, serif;
+              font-size: 12.5pt;
+              font-weight: bold;
+              color: #14284b;
+              border-bottom: 1.5pt solid #14284b;
+              padding-bottom: 2pt;
+              margin-top: 14pt;
+              margin-bottom: 6pt;
+            }
+            table {
+              width: 100%;
+              border-collapse: collapse;
+              margin-bottom: 12pt;
+              font-family: 'Times New Roman', Times, serif;
+            }
+            th {
+              background-color: #14284b;
+              color: #ffffff;
+              border: 1pt solid #14284b;
+              padding: 5pt 7pt;
+              font-size: 9.5pt;
+              text-align: left;
+            }
+            td {
+              border: 1pt solid #cfd8dc;
+              padding: 5pt 7pt;
+              font-size: 9.5pt;
+              vertical-align: top;
+            }
+            .summary-table td {
+              padding: 4pt 6pt;
+              font-size: 9.5pt;
+            }
+            .score-highlight {
+              font-size: 13pt;
+              font-weight: bold;
+              color: #c8102e;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="Section1">
+            <h1>IDP IELTS Academic Listening Examination Dossier</h1>
+            <p><strong>Official Diagnostic Assessment &bull; Computer-Delivered Standardized Simulation</strong></p>
+            <p style="color: #555555; font-size: 9.0pt;">Document Reference: IELTS-MOCK-01-IDP-TH &bull; Assessment Date: ${d.testDate}</p>
+            <hr style="border: none; border-top: 1.5pt solid #14284b; margin: 6pt 0 10pt 0;"/>
+
+            <h2>1. Candidate & Assessment Profile</h2>
+            <table class="summary-table">
+              <tr>
+                <td style="width: 25%; background-color: #f5f5f5;"><strong>Candidate Full Name:</strong></td>
+                <td style="width: 25%;">${d.candidateName}</td>
+                <td style="width: 25%; background-color: #f5f5f5;"><strong>Candidate ID Number:</strong></td>
+                <td style="width: 25%;">${d.candidateId}</td>
+              </tr>
+              <tr>
+                <td style="background-color: #f5f5f5;"><strong>Test Module:</strong></td>
+                <td>IELTS Academic Listening</td>
+                <td style="background-color: #f5f5f5;"><strong>Testing Mode:</strong></td>
+                <td>Computer-Delivered (CD-IELTS)</td>
+              </tr>
+              <tr>
+                <td style="background-color: #f5f5f5;"><strong>Assessment Date:</strong></td>
+                <td>${d.testDate}</td>
+                <td style="background-color: #f5f5f5;"><strong>Time Allowed:</strong></td>
+                <td>32 Minutes + 2 Mins Review</td>
+              </tr>
+            </table>
+
+            <h2>2. Standardized Performance & Band Conversion</h2>
+            <table class="summary-table">
+              <tr style="background-color: #f0f4f8; text-align: center;">
+                <th style="text-align: center;">Total Questions</th>
+                <th style="text-align: center;">Raw Score Achieved</th>
+                <th style="text-align: center;">Percentage Accuracy</th>
+                <th style="text-align: center;">Official IELTS Band</th>
+                <th style="text-align: center;">CEFR Benchmark</th>
+              </tr>
+              <tr style="text-align: center; font-size: 11pt;">
+                <td>40</td>
+                <td><strong>${d.rawScore} / 40</strong></td>
+                <td><strong>${d.percentage}%</strong></td>
+                <td class="score-highlight">Band ${d.band}</td>
+                <td><strong>${d.cefr}</strong></td>
+              </tr>
+            </table>
+
+            <table style="margin-top: 6pt; background-color: #fdfdfd;">
+              <tr>
+                <td style="width: 22%; background-color: #f5f5f5;"><strong>Competency Profile:</strong></td>
+                <td><strong>${d.competencyTitle}</strong></td>
+              </tr>
+              <tr>
+                <td style="background-color: #f5f5f5;"><strong>Examiner Descriptor:</strong></td>
+                <td>${d.competencyDesc}</td>
+              </tr>
+            </table>
+
+            <h2>3. Complete Itemized Candidate Answer Audit & Textual Rationales</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 6%; text-align: center;">Q#</th>
+                  <th style="width: 20%;">Candidate Response</th>
+                  <th style="width: 20%;">Official Key / Accepted</th>
+                  <th style="width: 12%; text-align: center;">Evaluation</th>
+                  <th style="width: 42%;">Textual Evidence & Pedagogical Rationale</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${rowsHtml}
+              </tbody>
+            </table>
+
+            <h2>4. IDP Standard Band Descriptors Reference Table</h2>
+            <table>
+              <thead>
+                <tr style="background-color: #37474f;">
+                  <th style="width: 15%; text-align: center;">Raw Score Range</th>
+                  <th style="width: 15%; text-align: center;">IELTS Band</th>
+                  <th style="width: 70%;">Performance Descriptor & Competency Profile</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td style="text-align:center;">39 – 40</td><td style="text-align:center; font-weight:bold;">Band 9.0</td><td>Expert User: Complete operational command of complex academic spoken English; flawless contextual inference.</td></tr>
+                <tr><td style="text-align:center;">37 – 38</td><td style="text-align:center; font-weight:bold;">Band 8.5</td><td>Very Good User: Handles complex, detailed argumentation with minor occasional unsystematic inaccuracies.</td></tr>
+                <tr><td style="text-align:center;">35 – 36</td><td style="text-align:center; font-weight:bold;">Band 8.0</td><td>Very Good User: Understands detailed reasoning and abstract academic terminology with rare misunderstanding.</td></tr>
+                <tr><td style="text-align:center;">32 – 34</td><td style="text-align:center; font-weight:bold;">Band 7.5</td><td>Good User: Handles complex discourse well; understands detailed academic discussions with minor gaps.</td></tr>
+                <tr><td style="text-align:center;">30 – 31</td><td style="text-align:center; font-weight:bold;">Band 7.0</td><td>Good User: Generally handles complex language well; understands detailed reasoning in lectures and dialogues.</td></tr>
+                <tr><td style="text-align:center;">26 – 29</td><td style="text-align:center; font-weight:bold;">Band 6.5</td><td>Competent User: Competent comprehension of main ideas; can understand most academic discussions in familiar contexts.</td></tr>
+                <tr><td style="text-align:center;">23 – 25</td><td style="text-align:center; font-weight:bold;">Band 6.0</td><td>Competent User: Satisfactory basic comprehension; copes with everyday communication but struggles with subtle academic inferences.</td></tr>
+              </tbody>
+            </table>
+
+            <p style="font-size: 8.5pt; color: #777777; margin-top: 15pt; text-align: center;">
+              This diagnostic document was automatically generated by the simulated IDP IELTS Academic Computer-Delivered Examination System. All rights reserved.
+            </p>
+          </div>
+        </body>
+        </html>
+      `;
+
+      const blob = new Blob(['\ufeff', wordDocumentContent], {
+        type: 'application/msword'
+      });
+      const url = URL.createObjectURL(blob);
+      const downloadLink = document.createElement("a");
+      downloadLink.href = url;
+      downloadLink.download = `IELTS_Listening_Evaluation_Report_Band_${d.band.replace(/[^a-zA-Z0-9]/g, '_')}.doc`;
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+      URL.revokeObjectURL(url);
+    }
+
+    /* Auto-initialize components on page load */
+    window.addEventListener("DOMContentLoaded", () => {
+      initPalette();
+      startTestTimer();
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.getVoices();
+      }
+    });
+  </script>
+</body>
+</html>
